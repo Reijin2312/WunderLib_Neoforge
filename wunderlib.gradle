@@ -1,0 +1,145 @@
+buildscript {
+    dependencies {}
+
+    repositories {
+        gradlePluginPortal()
+    }
+}
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
+
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+    maven { url 'https://maven.neoforged.net/releases' }
+    maven { url 'https://jitpack.io' }
+}
+
+print("wunderlib.gradle")
+
+neoForge {
+    version = project.neoforge_version
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+        data {
+            data()
+            programArguments.addAll(
+                    "--mod", archivesBaseName,
+                    "--all",
+                    "--output", file("src/main/generated").toString(),
+                    "--existing", file("src/main/resources").toString()
+            )
+        }
+    }
+    mods {
+        "${archivesBaseName}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    // NeoForge dependency is provided by the moddev plugin via neoForge version config.
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs += ['src/client/java', 'src/datagen/java']
+        }
+        resources {
+            srcDirs += [
+                    'src/main/generated'
+            ]
+        }
+    }
+}
+
+processResources {
+    inputs.property "version", project.mod_version
+
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand(
+                "mod_id": project.archives_base_name,
+                "version": project.mod_version,
+                "minecraft_version": project.minecraft_version,
+                "neoforge_version": project.neoforge_version
+        )
+    }
+}
+
+tasks.matching { it.name == "createMinecraftArtifacts" }.configureEach {
+    doNotTrackState("Work around Gradle 8.8 state tracking for moddev task outputs.")
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    dependsOn(tasks.matching { it.name == "runData" })
+    from("src/main/generated")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+javadoc {
+    options {
+        source = "21"
+        encoding = "UTF-8"
+        charSet = "UTF-8"
+        memberLevel = JavadocMemberLevel.PROTECTED
+        links("https://docs.oracle.com/en/java/javase/17/docs/api/")
+        // Disable the crazy super-strict doclint tool in Java 8
+        addStringOption("Xdoclint:none", "-quiet")
+        addStringOption("noqualifier", "net.minecraft.*:com.mojang.*:net.neoforged.*")
+        addBooleanOption("-allow-script-in-comments", true)
+        tags(
+                'apiNote:a:API Note:',
+                'implSpec:a:Implementation Requirements:',
+                'implNote:a:Implementation Note:'
+        )
+    }
+
+    allprojects.each {
+        source(it.sourceSets.main.allJava)
+    }
+
+    // Avoid runtime-only deps (e.g., DevLaunch) during javadoc resolution.
+    classpath = files(sourceSets.main.compileClasspath)
+    include("**/api/**")
+    include("de/ambertation/**")
+    failOnError true
+}
+
+configurations {
+    dev {
+        canBeResolved = false
+        canBeConsumed = true
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: [javadoc]) {
+    archiveClassifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    dev jar
+    archives sourcesJar
+    archives javadocJar
+}

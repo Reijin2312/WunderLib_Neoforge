@@ -1,0 +1,71 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - WunderLib",
+        "order": 0
+      },
+      "projectName": "WunderLib",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dwunderlib%%C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Data",
+      "presentation": {
+        "group": "Mod Development - WunderLib",
+        "order": 1
+      },
+      "projectName": "WunderLib",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\build\\moddev\\dataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\build\\moddev\\dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003dwunderlib%%C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - WunderLib",
+        "order": 2
+      },
+      "projectName": "WunderLib",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dwunderlib%%C:\\Users\\Redmi\\Desktop\\BetterMods\\WunderLib\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

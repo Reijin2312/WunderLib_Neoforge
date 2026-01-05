@@ -1,0 +1,12 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'eclipse'
+    id 'net.neoforged.moddev' version "${moddev_version}"
+    id 'maven-publish'
+    id "com.modrinth.minotaur" version "2.+"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+}
+print("build.gradle")
+apply from: "wunderlib.gradle"
+apply from: "helper.gradle"

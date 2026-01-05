@@ -1,0 +1,12 @@
+# Project exclude paths
+/.gradle/
+/.idea/
+/run/
+/run-server/
+/run-client/
+/build/
+/bin/
+/out/
+/CHANGES.md
+/consts.js
+/modrinth.json
