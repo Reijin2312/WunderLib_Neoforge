@@ -132,10 +132,11 @@ public class MultiLineText extends LayoutComponent<MultiLineText.MultiLineTextRe
         @Override
         public int getHeight(net.minecraft.network.chat.Component c) {
             if (linkedComponent == null) return 20;
-            MultiLineLabel ml;
-            if (linkedComponent.multiLineLabel != null) ml = linkedComponent.multiLineLabel;
-            else ml = linkedComponent.createVanillaComponent();
-            return ml.getLineCount() * getLineHeight(c);
+            int lineCount = linkedComponent.lines == null ? 0 : linkedComponent.lines.size();
+            if (lineCount == 0 && linkedComponent.multiLineLabel != null) {
+                lineCount = linkedComponent.multiLineLabel.getLineCount();
+            }
+            return lineCount * getLineHeight(c);
         }
 
         @Override
@@ -147,35 +148,27 @@ public class MultiLineText extends LayoutComponent<MultiLineText.MultiLineTextRe
                 Rectangle bounds,
                 Rectangle clipRect
         ) {
-            if (linkedComponent != null && linkedComponent.multiLineLabel != null) {
+            if (linkedComponent != null && linkedComponent.lines != null) {
                 int top = bounds.height - getHeight(linkedComponent.text);
                 if (linkedComponent.vAlign == Alignment.MIN) top = 0;
                 if (linkedComponent.vAlign == Alignment.CENTER) top /= 2;
-
-                if (linkedComponent.hAlign == Alignment.CENTER) {
-                    linkedComponent.multiLineLabel.renderCentered(
-                            guiGraphics, bounds.width / 2, top,
-                            getLineHeight(linkedComponent.text),
-                            linkedComponent.color
-                    );
-                } else if (linkedComponent.hAlign == Alignment.MAX) {
-                    int lineY = 0;
-                    int lineHeight = getLineHeight(linkedComponent.text);
-
-                    for (Iterator<LineWithWidth> iter = linkedComponent.lines.iterator(); iter.hasNext(); lineY += lineHeight) {
-                        LineWithWidth textWithWidth = iter.next();
-                        guiGraphics.drawString(
-                                getFont(),
-                                textWithWidth.text(),
-                                linkedComponent.width.calculatedSize() - textWithWidth.width(),
-                                lineY,
-                                linkedComponent.color
-                        );
+                int lineY = top;
+                int lineHeight = getLineHeight(linkedComponent.text);
+                for (Iterator<LineWithWidth> iter = linkedComponent.lines.iterator(); iter.hasNext(); lineY += lineHeight) {
+                    LineWithWidth textWithWidth = iter.next();
+                    int left;
+                    if (linkedComponent.hAlign == Alignment.CENTER) {
+                        left = (bounds.width - textWithWidth.width()) / 2;
+                    } else if (linkedComponent.hAlign == Alignment.MAX) {
+                        left = bounds.width - textWithWidth.width();
+                    } else {
+                        left = 0;
                     }
-                } else {
-                    linkedComponent.multiLineLabel.renderLeftAligned(
-                            guiGraphics, 0, top,
-                            getLineHeight(linkedComponent.text),
+                    guiGraphics.drawString(
+                            getFont(),
+                            textWithWidth.text(),
+                            left,
+                            lineY,
                             linkedComponent.color
                     );
                 }

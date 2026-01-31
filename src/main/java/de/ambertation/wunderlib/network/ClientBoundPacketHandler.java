@@ -1,10 +1,11 @@
 package de.ambertation.wunderlib.network;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -38,7 +39,7 @@ public class ClientBoundPacketHandler<T extends ClientBoundNetworkPayload<T>> ex
     }
 
     public ClientBoundPacketHandler(
-            ResourceLocation channel,
+            Identifier channel,
             NetworkPayload.NetworkPayloadFactory<T> factory
     ) {
         super(channel, factory);
@@ -58,7 +59,7 @@ public class ClientBoundPacketHandler<T extends ClientBoundNetworkPayload<T>> ex
     }
 
     public static <T extends ClientBoundNetworkPayload<T>> ClientBoundPacketHandler<T> register(
-            ResourceLocation channel,
+            Identifier channel,
             NetworkPayload.NetworkPayloadFactory<T> factory
     ) {
         ClientBoundPacketHandler<T> packetHandler = new ClientBoundPacketHandler<>(channel, factory);
@@ -112,7 +113,7 @@ public class ClientBoundPacketHandler<T extends ClientBoundNetworkPayload<T>> ex
             T payload,
             IPayloadContext context
     ) {
-        payload.processOnClient(reply -> PacketDistributor.sendToServer(reply));
+        payload.processOnClient(reply -> ClientPacketDistributor.sendToServer(reply));
 
         CompletableFuture<Void> future = context.enqueueWork(() -> {
             Minecraft client = Minecraft.getInstance();

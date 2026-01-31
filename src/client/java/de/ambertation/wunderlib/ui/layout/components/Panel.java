@@ -9,6 +9,7 @@ import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
+import net.minecraft.client.input.MouseButtonEvent;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -117,10 +118,10 @@ public class Panel implements ComponentWithBounds, RelativeContainerEventHandler
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float deltaTicks) {
         if (child != null) {
-            guiGraphics.pose().pushPose();
+            guiGraphics.pose().pushMatrix();
 
             // For 2D UI rendering, we only need x,y translation
-            guiGraphics.pose().translate(bounds.left, bounds.top, zIndex);
+            guiGraphics.pose().translate(bounds.left, bounds.top);
 
             child.render(
                     guiGraphics,
@@ -131,7 +132,7 @@ public class Panel implements ComponentWithBounds, RelativeContainerEventHandler
                     bounds
             );
 
-            guiGraphics.pose().popPose();
+            guiGraphics.pose().popMatrix();
         }
     }
 
@@ -141,24 +142,24 @@ public class Panel implements ComponentWithBounds, RelativeContainerEventHandler
     }
 
     @Override
-    public boolean mouseClicked(double d, double e, int i) {
+    public boolean mouseClicked(MouseButtonEvent event, boolean isInside) {
         if (inputEnabled)
-            return RelativeContainerEventHandler.super.mouseClicked(d, e, i);
+            return RelativeContainerEventHandler.super.mouseClicked(event, isInside);
 
         return false;
     }
 
     @Override
-    public boolean mouseDragged(double d, double e, int i, double f, double g) {
+    public boolean mouseDragged(MouseButtonEvent event, double dragX, double dragY) {
         if (inputEnabled)
-            return RelativeContainerEventHandler.super.mouseDragged(d, e, i, f, g);
+            return RelativeContainerEventHandler.super.mouseDragged(event, dragX, dragY);
         return false;
     }
 
     @Override
-    public boolean mouseReleased(double d, double e, int i) {
+    public boolean mouseReleased(MouseButtonEvent event) {
         if (inputEnabled)
-            return RelativeContainerEventHandler.super.mouseReleased(d, e, i);
+            return RelativeContainerEventHandler.super.mouseReleased(event);
         return false;
     }
 

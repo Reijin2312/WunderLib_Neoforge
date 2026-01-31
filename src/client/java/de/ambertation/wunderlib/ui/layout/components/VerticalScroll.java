@@ -10,6 +10,7 @@ import de.ambertation.wunderlib.ui.vanilla.VanillaScrollerRenderer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.events.ContainerEventHandler;
 import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.input.MouseButtonEvent;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -156,7 +157,7 @@ public class VerticalScroll<RS extends ScrollerRenderer> extends LayoutComponent
                 // The new Matrix System has a max stack depth of 15,
                 // We need to use it sparingly!
                 //guiGraphics.pose().pushMatrix();
-                guiGraphics.pose().translate(0, scrollerOffset(), 0);
+                guiGraphics.pose().translate(0, scrollerOffset());
 
                 setClippingRect(guiGraphics, clipRect);
                 child.render(
@@ -166,7 +167,7 @@ public class VerticalScroll<RS extends ScrollerRenderer> extends LayoutComponent
                 );
                 setClippingRect(guiGraphics, null);
 
-                guiGraphics.pose().translate(0, -scrollerOffset(), 0);
+                guiGraphics.pose().translate(0, -scrollerOffset());
                 //guiGraphics.pose().popMatrix();
             }
             scrollerRenderer.renderScrollBar(guiGraphics, renderBounds, saveScrollerY(), scrollerHeight, getZIndex());
@@ -216,7 +217,9 @@ public class VerticalScroll<RS extends ScrollerRenderer> extends LayoutComponent
     }
 
     @Override
-    public boolean mouseClicked(double x, double y, int button) {
+    public boolean mouseClicked(MouseButtonEvent event, boolean isInside) {
+        double x = event.x();
+        double y = event.y();
         Rectangle scroller = scrollerRenderer.getScrollerBounds(relativeBounds);
         Rectangle picker = scrollerRenderer.getPickerBounds(scroller, saveScrollerY(), scrollerHeight);
         if (picker.contains((int) x, (int) y)) {
@@ -228,27 +231,36 @@ public class VerticalScroll<RS extends ScrollerRenderer> extends LayoutComponent
 
         if (child != null && relativeBounds.contains(x, y))
             return ContainerEventHandler.super.mouseClicked(
-                    x - relativeBounds.left,
-                    y - relativeBounds.top - scrollerOffset(),
-                    button
+                    new MouseButtonEvent(
+                            x - relativeBounds.left,
+                            y - relativeBounds.top - scrollerOffset(),
+                            event.buttonInfo()
+                    ),
+                    isInside
             );
         return false;
     }
 
     @Override
-    public boolean mouseReleased(double x, double y, int button) {
+    public boolean mouseReleased(MouseButtonEvent event) {
+        double x = event.x();
+        double y = event.y();
         mouseDown = false;
         if (child != null && relativeBounds.contains(x, y))
             return ContainerEventHandler.super.mouseReleased(
-                    x - relativeBounds.left,
-                    y - relativeBounds.top - scrollerOffset(),
-                    button
+                    new MouseButtonEvent(
+                            x - relativeBounds.left,
+                            y - relativeBounds.top - scrollerOffset(),
+                            event.buttonInfo()
+                    )
             );
         return false;
     }
 
     @Override
-    public boolean mouseDragged(double x, double y, int button, double x2, double y2) {
+    public boolean mouseDragged(MouseButtonEvent event, double dragX, double dragY) {
+        double x = event.x();
+        double y = event.y();
         if (mouseDown) {
             int delta = (int) y - mouseDownY;
             scrollerY = scrollerDownY + delta;
@@ -256,11 +268,13 @@ public class VerticalScroll<RS extends ScrollerRenderer> extends LayoutComponent
         }
         if (child != null && relativeBounds.contains(x, y))
             return ContainerEventHandler.super.mouseDragged(
-                    x - relativeBounds.left,
-                    y - relativeBounds.top - scrollerOffset(),
-                    button,
-                    x2,
-                    y2
+                    new MouseButtonEvent(
+                            x - relativeBounds.left,
+                            y - relativeBounds.top - scrollerOffset(),
+                            event.buttonInfo()
+                    ),
+                    dragX,
+                    dragY
             );
         return false;
     }

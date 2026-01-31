@@ -9,7 +9,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 
-@EventBusSubscriber(modid = WunderLib.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@EventBusSubscriber(modid = WunderLib.MOD_ID, value = Dist.CLIENT)
 public class WunderLibClient {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {

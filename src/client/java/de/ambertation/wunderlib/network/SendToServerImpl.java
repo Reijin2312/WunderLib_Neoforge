@@ -1,13 +1,13 @@
 package de.ambertation.wunderlib.network;
 
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 
 import org.jetbrains.annotations.ApiStatus;
 
 public class SendToServerImpl implements SendToServerAdapter {
     @Override
     public void sendToServer(ServerBoundNetworkPayload<?> payload) {
-        PacketDistributor.sendToServer(payload);
+        ClientPacketDistributor.sendToServer(payload);
     }
 
     @ApiStatus.Internal

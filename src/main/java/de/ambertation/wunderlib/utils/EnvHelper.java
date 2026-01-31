@@ -14,7 +14,7 @@ public class EnvHelper {
      * @return true if the current environment is a client, false if it's a server
      */
     public static boolean isClient() {
-        return FMLEnvironment.dist == Dist.CLIENT;
+        return FMLEnvironment.getDist() == Dist.CLIENT;
     }
 }
 

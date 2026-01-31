@@ -28,8 +28,8 @@ neoForge {
         server {
             server()
         }
-        data {
-            data()
+        clientData {
+            clientData()
             programArguments.addAll(
                     "--mod", archivesBaseName,
                     "--all",
@@ -89,7 +89,7 @@ java {
 }
 
 jar {
-    dependsOn(tasks.matching { it.name == "runData" })
+    dependsOn(tasks.matching { it.name == "runClientData" })
     from("src/main/generated")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from("LICENSE") {

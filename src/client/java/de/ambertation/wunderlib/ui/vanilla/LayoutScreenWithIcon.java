@@ -6,20 +6,20 @@ import de.ambertation.wunderlib.ui.layout.values.Size;
 
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import org.jetbrains.annotations.Nullable;
 
 public abstract class LayoutScreenWithIcon extends LayoutScreen {
-    protected final ResourceLocation icon;
+    protected final Identifier icon;
 
-    public LayoutScreenWithIcon(ResourceLocation icon, Component component) {
+    public LayoutScreenWithIcon(Identifier icon, Component component) {
         this(EMPTY_SCREEN, icon, component);
     }
 
     public LayoutScreenWithIcon(
             @Nullable Screen parent,
-            ResourceLocation icon,
+            Identifier icon,
             Component component
     ) {
         this(setScreenOnClose(parent), icon, component);
@@ -27,7 +27,7 @@ public abstract class LayoutScreenWithIcon extends LayoutScreen {
 
     public LayoutScreenWithIcon(
             @Nullable Screen parent,
-            ResourceLocation icon,
+            Identifier icon,
             Component component,
             int topPadding,
             int bottomPadding,
@@ -38,7 +38,7 @@ public abstract class LayoutScreenWithIcon extends LayoutScreen {
 
     public LayoutScreenWithIcon(
             @Nullable Runnable onClose,
-            ResourceLocation icon,
+            Identifier icon,
             Component component
     ) {
         this(onClose, icon, component, 20, 10, 20, 15);
@@ -46,7 +46,7 @@ public abstract class LayoutScreenWithIcon extends LayoutScreen {
 
     public LayoutScreenWithIcon(
             @Nullable Runnable onClose,
-            ResourceLocation icon,
+            Identifier icon,
             Component component,
             int topPadding,
             int bottomPadding,
@@ -57,7 +57,7 @@ public abstract class LayoutScreenWithIcon extends LayoutScreen {
 
     public LayoutScreenWithIcon(
             @Nullable Runnable onClose,
-            ResourceLocation icon,
+            Identifier icon,
             Component component,
             int topPadding,
             int bottomPadding,

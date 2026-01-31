@@ -5,7 +5,8 @@ import de.ambertation.wunderlib.ui.layout.values.Size;
 import de.ambertation.wunderlib.ui.layout.values.Value;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.input.MouseButtonEvent;
+import net.minecraft.resources.Identifier;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -30,7 +31,7 @@ public class ImageButton extends Image {
     public ImageButton(
             Value width,
             Value height,
-            ResourceLocation location
+            Identifier location
     ) {
         super(width, height, location);
         this.onPress = NO_ACTION;
@@ -40,7 +41,7 @@ public class ImageButton extends Image {
     public ImageButton(
             Value width,
             Value height,
-            ResourceLocation location,
+            Identifier location,
             Size resourceSize
     ) {
         super(width, height, location, resourceSize);
@@ -92,12 +93,14 @@ public class ImageButton extends Image {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int i) {
+    public boolean mouseClicked(MouseButtonEvent event, boolean isInside) {
+        double mouseX = event.x();
+        double mouseY = event.y();
         if (getRelativeBounds().contains(mouseX, mouseY)) {
             onPress.onPress(this);
             return true;
         }
-        return super.mouseClicked(mouseX, mouseY, i);
+        return super.mouseClicked(event, isInside);
     }
 
     @Override

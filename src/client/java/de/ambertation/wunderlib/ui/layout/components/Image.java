@@ -6,7 +6,7 @@ import de.ambertation.wunderlib.ui.layout.values.Size;
 import de.ambertation.wunderlib.ui.layout.values.Value;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -14,15 +14,15 @@ import net.neoforged.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class Image extends CustomRenderComponent {
     protected Rectangle uvRect;
-    public final ResourceLocation location;
+    public final Identifier location;
     protected float alpha;
     protected Size resourceSize;
 
-    public Image(Value width, Value height, ResourceLocation location) {
+    public Image(Value width, Value height, Identifier location) {
         this(width, height, location, new Size(16, 16));
     }
 
-    public Image(Value width, Value height, ResourceLocation location, Size resourceSize) {
+    public Image(Value width, Value height, Identifier location, Size resourceSize) {
         super(width, height);
         this.location = location;
         this.uvRect = new Rectangle(0, 0, resourceSize.width(), resourceSize.height());

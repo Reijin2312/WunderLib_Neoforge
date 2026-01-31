@@ -3,7 +3,7 @@ package de.ambertation.wunderlib.utils;
 
 import de.ambertation.wunderlib.WunderLib;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -45,12 +45,12 @@ public class Version {
         }
         
         /**
-         * Creates a ResourceLocation with the mod's namespace and the given path.
-         * @param key The path part of the ResourceLocation
-         * @return A ResourceLocation with the mod's namespace and the given path
+         * Creates a Identifier with the mod's namespace and the given path.
+         * @param key The path part of the Identifier
+         * @return A Identifier with the mod's namespace and the given path
          */
-        default ResourceLocation mk(String key) {
-            return ResourceLocation.fromNamespaceAndPath(getModID(), key);
+        default Identifier mk(String key) {
+            return Identifier.fromNamespaceAndPath(getModID(), key);
         }
     }
 

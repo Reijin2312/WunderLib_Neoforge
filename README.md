@@ -2,7 +2,7 @@
 
 # WunderLib
 
-WunderLib is a library mod mainly focused on UI and Math, MC 1.21.1
+WunderLib is a library mod mainly focused on UI and Math, MC 1.21.11
 
 ## Importing:
 

@@ -289,16 +289,25 @@ publishing {
     repositories {
         def tokenFile = new File(projectDir, "../AMBER_TOKEN")
         if (tokenFile.exists()) {
-            maven {
-                def slurper = new groovy.json.JsonSlurper();
-                def apiKey = slurper.parseText(tokenFile.text)
-                println "\nPublishing ${project.archives_base_name} to Maven..."
-                name = "Ambertation"
-                url = "https://maven.ambertation.de/releases/"
-                credentials {
-                    username = apiKey.username
-                    password = apiKey.token
+            def slurper = new groovy.json.JsonSlurper()
+            def apiKey = null
+            try {
+                apiKey = slurper.parseText(tokenFile.text)
+            } catch (Exception e) {
+                println "AMBER_TOKEN is not valid JSON, skipping Maven publish credentials."
+            }
+            if (apiKey?.username && apiKey?.token) {
+                maven {
+                    println "\nPublishing ${project.archives_base_name} to Maven..."
+                    name = "Ambertation"
+                    url = "https://maven.ambertation.de/releases/"
+                    credentials {
+                        username = apiKey.username
+                        password = apiKey.token
+                    }
                 }
+            } else if (apiKey != null) {
+                println "AMBER_TOKEN JSON missing username/token, skipping Maven publish credentials."
             }
         }
     }

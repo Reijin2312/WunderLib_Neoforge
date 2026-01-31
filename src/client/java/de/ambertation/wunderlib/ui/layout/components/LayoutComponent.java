@@ -123,14 +123,14 @@ public abstract class LayoutComponent<R extends ComponentRenderer, L extends Lay
         // The new Matrix System has a max stack depth of 15,
         // We need to use it sparingly!
         //guiGraphics.pose().pushMatrix();
-        guiGraphics.pose().translate(relativeBounds.left, relativeBounds.top, 0);
+        guiGraphics.pose().translate(relativeBounds.left, relativeBounds.top);
 
         //if (r.overlaps(clip))
         {
             renderInBounds(guiGraphics, mouseX - relativeBounds.left, mouseY - relativeBounds.top, deltaTicks, r, clip);
         }
 
-        guiGraphics.pose().translate(-relativeBounds.left, -relativeBounds.top, 0);
+        guiGraphics.pose().translate(-relativeBounds.left, -relativeBounds.top);
         //guiGraphics.pose().popMatrix();
     }
 

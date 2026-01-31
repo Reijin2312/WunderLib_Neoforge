@@ -4,6 +4,7 @@ import de.ambertation.wunderlib.ui.layout.values.Rectangle;
 
 import net.minecraft.client.gui.components.events.ContainerEventHandler;
 import net.minecraft.client.gui.components.events.GuiEventListener;
+import net.minecraft.client.input.MouseButtonEvent;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -15,26 +16,30 @@ public interface RelativeContainerEventHandler extends ContainerEventHandler {
     Rectangle getInputBounds();
 
     default Optional<GuiEventListener> getChildAt(double d, double e) {
-        Rectangle r = getInputBounds();
         return ContainerEventHandler.super.getChildAt(d, e);
     }
 
-    default boolean mouseClicked(double d, double e, int i) {
+    private MouseButtonEvent offsetMouseEvent(MouseButtonEvent event) {
+        Rectangle r = getInputBounds();
+        return new MouseButtonEvent(event.x() - r.left, event.y() - r.top, event.buttonInfo());
+    }
+
+    @Override
+    default boolean mouseClicked(MouseButtonEvent event, boolean isInside) {
         if (getFocused() != null) {
             //getFocused().mouseClicked(d, e, i);
         }
-        Rectangle r = getInputBounds();
-        return ContainerEventHandler.super.mouseClicked(d - r.left, e - r.top, i);
+        return ContainerEventHandler.super.mouseClicked(offsetMouseEvent(event), isInside);
     }
 
-    default boolean mouseReleased(double d, double e, int i) {
-        Rectangle r = getInputBounds();
-        return ContainerEventHandler.super.mouseReleased(d - r.left, e - r.top, i);
+    @Override
+    default boolean mouseReleased(MouseButtonEvent event) {
+        return ContainerEventHandler.super.mouseReleased(offsetMouseEvent(event));
     }
 
-    default boolean mouseDragged(double d, double e, int i, double f, double g) {
-        Rectangle r = getInputBounds();
-        return ContainerEventHandler.super.mouseDragged(d - r.left, e - r.top, i, f - r.left, g - r.top);
+    @Override
+    default boolean mouseDragged(MouseButtonEvent event, double dragX, double dragY) {
+        return ContainerEventHandler.super.mouseDragged(offsetMouseEvent(event), dragX, dragY);
     }
 
     default boolean mouseScrolled(double d, double e, double f, double g) {

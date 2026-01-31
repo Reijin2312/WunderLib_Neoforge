@@ -7,6 +7,7 @@ import de.ambertation.wunderlib.ui.vanilla.LayoutScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.sounds.SoundManager;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 
@@ -78,8 +79,8 @@ public class DropDown<T> extends Button {
     public DropDown<T> addOption(Component title, T value, @Nullable Consumer<T> callback) {
         final var component = new Text(Value.fit(), Value.fixed(20), title) {
             @Override
-            public boolean mouseClicked(double d, double e, int i) {
-                if (this.relativeBounds.contains(d, e)) {
+            public boolean mouseClicked(MouseButtonEvent event, boolean isInside) {
+                if (this.relativeBounds.contains(event.x(), event.y())) {
                     playDownSound(Minecraft.getInstance().getSoundManager());
                     select(value, true);
                     close();
@@ -142,8 +143,8 @@ public class DropDown<T> extends Button {
             final int PADDING = 1;
             panel = new Panel(parentPanel.parentScreen) {
                 @Override
-                public boolean mouseClicked(double d, double e, int i) {
-                    if (!super.mouseClicked(d, e, i)) {
+                public boolean mouseClicked(MouseButtonEvent event, boolean isInside) {
+                    if (!super.mouseClicked(event, isInside)) {
                         close();
                     }
                     return true;

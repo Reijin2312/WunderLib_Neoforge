@@ -3,6 +3,9 @@ package de.ambertation.wunderlib.ui.layout.components;
 import de.ambertation.wunderlib.ui.layout.values.Value;
 
 import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.input.CharacterEvent;
+import net.minecraft.client.input.KeyEvent;
+import net.minecraft.client.input.MouseButtonEvent;
 
 public abstract class AbstractVanillaComponent<C extends AbstractWidget, V extends AbstractVanillaComponent<C, V>> extends LayoutComponent<AbstractVanillaComponentRenderer<C, V>, V> {
     protected C vanillaComponent;
@@ -71,29 +74,41 @@ public abstract class AbstractVanillaComponent<C extends AbstractWidget, V exten
     }
 
     @Override
-    public boolean mouseClicked(double x, double y, int button) {
-        if (vanillaComponent != null && enabled)
-            return vanillaComponent.mouseClicked(x - relativeBounds.left, y - relativeBounds.top, button);
-        return false;
-    }
-
-    @Override
-    public boolean mouseReleased(double x, double y, int button) {
-        if (vanillaComponent != null && enabled)
-            return vanillaComponent.mouseReleased(x - relativeBounds.left, y - relativeBounds.top, button);
-        return false;
-    }
-
-    @Override
-    public boolean mouseDragged(double x, double y, int button, double x2, double y2) {
-        if (vanillaComponent != null && enabled)
-            return vanillaComponent.mouseDragged(
-                    x - relativeBounds.left,
-                    y - relativeBounds.top,
-                    button,
-                    x2 - relativeBounds.left,
-                    y2 - relativeBounds.top
+    public boolean mouseClicked(MouseButtonEvent event, boolean isInside) {
+        if (vanillaComponent != null && enabled) {
+            MouseButtonEvent localEvent = new MouseButtonEvent(
+                    event.x() - relativeBounds.left,
+                    event.y() - relativeBounds.top,
+                    event.buttonInfo()
             );
+            return vanillaComponent.mouseClicked(localEvent, isInside);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean mouseReleased(MouseButtonEvent event) {
+        if (vanillaComponent != null && enabled) {
+            MouseButtonEvent localEvent = new MouseButtonEvent(
+                    event.x() - relativeBounds.left,
+                    event.y() - relativeBounds.top,
+                    event.buttonInfo()
+            );
+            return vanillaComponent.mouseReleased(localEvent);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean mouseDragged(MouseButtonEvent event, double dragX, double dragY) {
+        if (vanillaComponent != null && enabled) {
+            MouseButtonEvent localEvent = new MouseButtonEvent(
+                    event.x() - relativeBounds.left,
+                    event.y() - relativeBounds.top,
+                    event.buttonInfo()
+            );
+            return vanillaComponent.mouseDragged(localEvent, dragX, dragY);
+        }
         return false;
     }
 
@@ -105,23 +120,23 @@ public abstract class AbstractVanillaComponent<C extends AbstractWidget, V exten
     }
 
     @Override
-    public boolean keyPressed(int i, int j, int k) {
+    public boolean keyPressed(KeyEvent event) {
         if (vanillaComponent != null && enabled)
-            return vanillaComponent.keyPressed(i, j, k);
+            return vanillaComponent.keyPressed(event);
         return false;
     }
 
     @Override
-    public boolean keyReleased(int i, int j, int k) {
+    public boolean keyReleased(KeyEvent event) {
         if (vanillaComponent != null && enabled)
-            return vanillaComponent.keyReleased(i, j, k);
+            return vanillaComponent.keyReleased(event);
         return false;
     }
 
     @Override
-    public boolean charTyped(char c, int i) {
+    public boolean charTyped(CharacterEvent event) {
         if (vanillaComponent != null && enabled)
-            return vanillaComponent.charTyped(c, i);
+            return vanillaComponent.charTyped(event);
         return false;
     }
 

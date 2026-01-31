@@ -5,7 +5,7 @@ import de.ambertation.wunderlib.ui.layout.values.Value;
 import de.ambertation.wunderlib.ui.vanilla.VanillaScrollerRenderer;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 import net.neoforged.api.distmarker.Dist;
@@ -124,12 +124,12 @@ public class HorizontalStack extends AbstractHorizontalStack<HorizontalStack> {
     }
 
     @Override
-    public Image addIcon(ResourceLocation location, Size resourceSize) {
+    public Image addIcon(Identifier location, Size resourceSize) {
         return super.addIcon(location, resourceSize);
     }
 
     @Override
-    public Image addImage(Value width, Value height, ResourceLocation location, Size resourceSize) {
+    public Image addImage(Value width, Value height, Identifier location, Size resourceSize) {
         return super.addImage(width, height, location, resourceSize);
     }
 

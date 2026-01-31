@@ -4,7 +4,8 @@ import de.ambertation.wunderlib.ui.layout.values.Rectangle;
 import de.ambertation.wunderlib.ui.layout.values.Size;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.resources.Identifier;
 
 public class RenderHelper {
     public static void outline(GuiGraphics guiGraphics, int x0, int y0, int x1, int y1, int color) {
@@ -72,7 +73,7 @@ public class RenderHelper {
     public static void renderImage(
             GuiGraphics guiGraphics,
             int left, int top,
-            ResourceLocation location,
+            Identifier location,
             Size resourceSize, Rectangle uvRect,
             float alpha
     ) {
@@ -83,26 +84,25 @@ public class RenderHelper {
             GuiGraphics guiGraphics,
             int left, int top,
             int width, int height,
-            ResourceLocation location,
+            Identifier location,
             Size resourceSize, Rectangle uvRect,
             float alpha
     ) {
         float clampedAlpha = Math.max(0.0F, Math.min(1.0F, alpha));
-        guiGraphics.setColor(1.0F, 1.0F, 1.0F, clampedAlpha);
+        int color = ((int) (clampedAlpha * 255.0F) << 24) | 0xFFFFFF;
         guiGraphics.blit(
+                RenderPipelines.GUI_TEXTURED,
                 location,
                 left,
                 top,
-                width,
-                height,
                 (float) uvRect.left,
                 (float) uvRect.top,
                 uvRect.width,
                 uvRect.height,
                 resourceSize.width(),
-                resourceSize.height()
+                resourceSize.height(),
+                color
         );
-        guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     /**
@@ -112,7 +112,7 @@ public class RenderHelper {
             GuiGraphics guiGraphics,
             int left, int top,
             int width, int height,
-            ResourceLocation location,
+            Identifier location,
             Size resourceSize, Rectangle uvRect,
             float alpha
     ) {

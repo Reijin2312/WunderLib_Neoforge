@@ -5,7 +5,7 @@ import de.ambertation.wunderlib.WunderLib;
 import de.ambertation.wunderlib.utils.Version;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -23,7 +23,7 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
     static final Gson JSON_BUILDER = new GsonBuilder().setPrettyPrinting()
                                                       .create();
     public final String category;
-    public final ResourceLocation location;
+    public final Identifier location;
     private final List<C.Value<?, ?>> knownValues = new LinkedList<>();
     private JsonObject root;
     private boolean modified;
@@ -37,7 +37,7 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
         this(versionProvider, versionProvider.mk(category), namespace + "." + category);
     }
 
-    protected AbstractConfig(Version.ModVersionProvider versionProvider, ResourceLocation location, String category) {
+    protected AbstractConfig(Version.ModVersionProvider versionProvider, Identifier location, String category) {
         this.category = category;
         this.versionProvider = versionProvider;
         this.location = location;

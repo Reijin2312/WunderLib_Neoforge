@@ -1,8 +1,12 @@
 package de.ambertation.wunderlib.network;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -32,7 +36,7 @@ public class ServerBoundPacketHandler<T extends ServerBoundNetworkPayload<T>> ex
     }
 
     public ServerBoundPacketHandler(
-            ResourceLocation channel,
+            Identifier channel,
             NetworkPayload.NetworkPayloadFactory<T> factory
     ) {
         super(channel, factory);
@@ -49,7 +53,7 @@ public class ServerBoundPacketHandler<T extends ServerBoundNetworkPayload<T>> ex
     }
 
     public static <T extends ServerBoundNetworkPayload<T>> ServerBoundPacketHandler<T> register(
-            ResourceLocation channel,
+            Identifier channel,
             NetworkPayload.NetworkPayloadFactory<T> factory
     ) {
         ServerBoundPacketHandler<T> packetHandler = new ServerBoundPacketHandler<>(channel, factory);
@@ -57,12 +61,13 @@ public class ServerBoundPacketHandler<T extends ServerBoundNetworkPayload<T>> ex
         return packetHandler;
     }
 
+    @OnlyIn(Dist.CLIENT)
     public static <T extends ServerBoundNetworkPayload<T>> void sendToServer(T payload) {
         payload.prepareOnClient();
         if (sendToServerAdapter != null) {
             sendToServerAdapter.sendToServer(payload);
         } else {
-            PacketDistributor.sendToServer(payload);
+            ClientPacketDistributor.sendToServer(payload);
         }
     }
 
@@ -82,7 +87,7 @@ public class ServerBoundPacketHandler<T extends ServerBoundNetworkPayload<T>> ex
         payload.processOnServer(player, responseSender);
 
         CompletableFuture<Void> future = context.enqueueWork(() -> {
-            var server = player.getServer();
+            var server = ((ServerLevel) player.level()).getServer();
             if (server != null) {
                 payload.processOnGameThread(server, player);
             }
