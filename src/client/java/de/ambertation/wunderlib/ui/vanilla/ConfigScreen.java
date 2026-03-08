@@ -11,14 +11,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.LinkedList;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-@OnlyIn(Dist.CLIENT)
 public class ConfigScreen extends LayoutScreenWithIcon {
     protected final List<AbstractConfig<?>> configFiles;
     protected final List<OnCheckboxChangeEvent> checkboxListeners;
@@ -377,4 +374,3 @@ public class ConfigScreen extends LayoutScreenWithIcon {
         void onChange(AbstractConfig<?>.Value<?, ?> value, Checkbox cb, boolean newValue);
     }
 }
-

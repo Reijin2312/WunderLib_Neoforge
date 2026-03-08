@@ -26,4 +26,3 @@ public abstract class PacketHandler<T extends NetworkPayload<T>> {
         );
     }
 }
-

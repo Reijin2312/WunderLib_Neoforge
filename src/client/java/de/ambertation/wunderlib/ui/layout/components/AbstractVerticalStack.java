@@ -1,14 +1,11 @@
 package de.ambertation.wunderlib.ui.layout.components;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import de.ambertation.wunderlib.ui.layout.components.input.RelativeContainerEventHandler;
 import de.ambertation.wunderlib.ui.layout.components.render.NullRenderer;
 import de.ambertation.wunderlib.ui.layout.values.Alignment;
 import de.ambertation.wunderlib.ui.layout.values.Value;
 
-@OnlyIn(Dist.CLIENT)
 public class AbstractVerticalStack<S extends AbstractVerticalStack<S>> extends AbstractStack<NullRenderer, S> implements RelativeContainerEventHandler {
     public AbstractVerticalStack(Value width, Value height) {
         super(width, height);

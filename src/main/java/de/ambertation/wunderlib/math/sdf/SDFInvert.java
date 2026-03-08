@@ -55,4 +55,3 @@ public class SDFInvert extends SDFOperation {
         return getFirst().getBoundingBox();
     }
 }
-

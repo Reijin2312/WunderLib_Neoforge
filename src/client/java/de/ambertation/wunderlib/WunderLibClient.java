@@ -5,7 +5,6 @@ import de.ambertation.wunderlib.network.SendToServerImpl;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 
@@ -17,4 +16,3 @@ public class WunderLibClient {
         SendToClientImpl.registerAdapter();
     }
 }
-

@@ -1,12 +1,9 @@
 package de.ambertation.wunderlib.ui.layout.components;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import de.ambertation.wunderlib.ui.layout.components.render.NullRenderer;
 import de.ambertation.wunderlib.ui.layout.values.Value;
 
-@OnlyIn(Dist.CLIENT)
 public class Empty extends LayoutComponent<NullRenderer, Empty> {
     public Empty(
             Value width,
@@ -42,4 +39,3 @@ public class Empty extends LayoutComponent<NullRenderer, Empty> {
         focused = bl;
     }
 }
-

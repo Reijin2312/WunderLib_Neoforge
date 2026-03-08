@@ -1,14 +1,11 @@
 package de.ambertation.wunderlib.ui.layout.components;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import de.ambertation.wunderlib.ui.layout.components.input.RelativeContainerEventHandler;
 import de.ambertation.wunderlib.ui.layout.components.render.NullRenderer;
 import de.ambertation.wunderlib.ui.layout.values.Alignment;
 import de.ambertation.wunderlib.ui.layout.values.Value;
 
-@OnlyIn(Dist.CLIENT)
 public class AbstractHorizontalStack<S extends AbstractHorizontalStack<S>> extends AbstractStack<NullRenderer, S> implements RelativeContainerEventHandler {
     public AbstractHorizontalStack(Value width, Value height) {
         super(width, height);
@@ -84,5 +81,3 @@ public class AbstractHorizontalStack<S extends AbstractHorizontalStack<S>> exten
         return addColumn(Value.fit(), Value.fit());
     }
 }
-
-

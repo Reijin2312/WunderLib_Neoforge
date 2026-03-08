@@ -58,4 +58,3 @@ public class ConfigFile extends AbstractConfig<ConfigFile> {
         return true;
     }
 }
-

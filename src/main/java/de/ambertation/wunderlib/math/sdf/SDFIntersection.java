@@ -58,4 +58,3 @@ public class SDFIntersection extends SDFBinaryOperation {
         return "(" + getFirst() + " & " + getSecond() + ")" + " [" + graphIndex + "]";
     }
 }
-

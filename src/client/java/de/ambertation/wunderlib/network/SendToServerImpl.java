@@ -15,4 +15,3 @@ public class SendToServerImpl implements SendToServerAdapter {
         ServerBoundPacketHandler.registerAdapter(new SendToServerImpl());
     }
 }
-

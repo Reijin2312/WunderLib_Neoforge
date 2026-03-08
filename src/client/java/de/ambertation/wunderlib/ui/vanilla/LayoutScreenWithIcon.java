@@ -80,4 +80,3 @@ public abstract class LayoutScreenWithIcon extends LayoutScreen {
         return row;
     }
 }
-

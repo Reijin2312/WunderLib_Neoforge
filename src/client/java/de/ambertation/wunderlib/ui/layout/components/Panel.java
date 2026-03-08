@@ -11,13 +11,10 @@ import net.minecraft.client.gui.narration.NarratableEntry;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-@OnlyIn(Dist.CLIENT)
 public class Panel implements ComponentWithBounds, RelativeContainerEventHandler, NarratableEntry, Renderable {
     protected LayoutComponent<?, ?> child;
     List<? extends GuiEventListener> listeners = List.of();

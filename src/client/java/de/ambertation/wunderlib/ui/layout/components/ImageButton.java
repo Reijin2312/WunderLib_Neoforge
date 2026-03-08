@@ -8,22 +8,17 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.resources.Identifier;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class ImageButton extends Image {
     public static final OnTooltip NO_TOOLTIP = (button, poseStack, i, j) -> {
     };
     public static final OnPress NO_ACTION = (button) -> {
     };
 
-    @OnlyIn(Dist.CLIENT)
     public interface OnTooltip {
         void onTooltip(ImageButton button, GuiGraphics guiGraphics, int mouseX, int mouseY);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public interface OnPress {
         void onPress(ImageButton button);
     }
@@ -118,4 +113,3 @@ public class ImageButton extends Image {
         }
     }
 }
-

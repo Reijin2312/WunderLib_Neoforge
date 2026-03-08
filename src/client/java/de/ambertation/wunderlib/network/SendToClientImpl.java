@@ -13,4 +13,3 @@ public class SendToClientImpl implements SendToClientAdapter {
         // NeoForge payloads are registered via RegisterPayloadHandlersEvent.
     }
 }
-

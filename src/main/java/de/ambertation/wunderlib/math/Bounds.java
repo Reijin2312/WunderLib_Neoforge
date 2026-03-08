@@ -430,4 +430,3 @@ public class Bounds {
         return Bounds.of(min, max);
     }
 }
-

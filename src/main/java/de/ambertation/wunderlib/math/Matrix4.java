@@ -346,4 +346,3 @@ public class Matrix4 {
         return this.transform(Bounds.Interpolate.CORNERS_AND_CENTER[corner.idx].t.sub(0.5)).align(blockAligned);
     }
 }
-

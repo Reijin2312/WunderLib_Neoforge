@@ -5,8 +5,6 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import de.ambertation.wunderlib.ui.layout.components.render.EditBoxRenderer;
 import de.ambertation.wunderlib.ui.layout.values.Value;
@@ -15,7 +13,6 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-@OnlyIn(Dist.CLIENT)
 public class Input extends AbstractVanillaComponent<EditBox, Input> {
     private Consumer<String> responder;
     private BiFunction<String, Integer, FormattedCharSequence> formatter;
@@ -101,4 +98,3 @@ public class Input extends AbstractVanillaComponent<EditBox, Input> {
 
 
 }
-

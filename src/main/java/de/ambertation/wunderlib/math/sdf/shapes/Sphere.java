@@ -58,4 +58,3 @@ public class Sphere extends BaseShape {
         return DEFAULT_TRANSFORM;
     }
 }
-

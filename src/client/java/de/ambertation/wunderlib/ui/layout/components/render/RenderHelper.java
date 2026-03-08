@@ -88,15 +88,16 @@ public class RenderHelper {
             Size resourceSize, Rectangle uvRect,
             float alpha
     ) {
-        float clampedAlpha = Math.max(0.0F, Math.min(1.0F, alpha));
-        int color = ((int) (clampedAlpha * 255.0F) << 24) | 0xFFFFFF;
+        int color = ((int) (Math.max(0.0F, Math.min(1.0F, alpha)) * 255.0F) << 24) | 0xFFFFFF;
         guiGraphics.blit(
                 RenderPipelines.GUI_TEXTURED,
                 location,
                 left,
                 top,
-                (float) uvRect.left,
-                (float) uvRect.top,
+                uvRect.left,
+                uvRect.top,
+                width,
+                height,
                 uvRect.width,
                 uvRect.height,
                 resourceSize.width(),

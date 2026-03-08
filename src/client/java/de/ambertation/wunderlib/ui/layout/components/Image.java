@@ -8,10 +8,7 @@ import de.ambertation.wunderlib.ui.layout.values.Value;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.Identifier;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class Image extends CustomRenderComponent {
     protected Rectangle uvRect;
     public final Identifier location;
@@ -109,4 +106,3 @@ public class Image extends CustomRenderComponent {
         focused = bl;
     }
 }
-

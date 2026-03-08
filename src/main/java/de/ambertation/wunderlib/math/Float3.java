@@ -423,4 +423,3 @@ public class Float3 {
     public Float3 zzz() { return new Float3(z, z, z); }
     //-------------------------------------------- SWIVELS  (@formatter:on) --------------------------------------------
 }
-

@@ -31,4 +31,3 @@ public interface Transformable extends RootedSDF {
 
     boolean isOperation();
 }
-

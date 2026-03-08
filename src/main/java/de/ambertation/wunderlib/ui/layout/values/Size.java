@@ -9,4 +9,3 @@ public record Size(int width, int height) {
         return new Size(width, height);
     }
 }
-

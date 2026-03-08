@@ -113,4 +113,3 @@ public class Slider<N extends Number> extends AbstractSliderButton {
         onChange.now(this, currentValue());
     }
 }
-

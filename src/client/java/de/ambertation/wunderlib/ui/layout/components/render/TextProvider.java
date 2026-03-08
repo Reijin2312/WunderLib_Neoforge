@@ -3,10 +3,7 @@ package de.ambertation.wunderlib.ui.layout.components.render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public interface TextProvider {
     default Font getFont() {
         return Minecraft.getInstance().font;
@@ -24,4 +21,3 @@ public interface TextProvider {
         return getLineHeight(c) + 11;
     }
 }
-

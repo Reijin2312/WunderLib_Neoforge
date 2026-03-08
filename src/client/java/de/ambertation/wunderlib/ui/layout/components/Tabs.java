@@ -5,13 +5,10 @@ import de.ambertation.wunderlib.ui.layout.values.Value;
 
 import net.minecraft.network.chat.Component;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.LinkedList;
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
 public class Tabs extends AbstractVerticalStack<Tabs> {
     @FunctionalInterface
     public interface OnPageChange {
@@ -172,4 +169,3 @@ public class Tabs extends AbstractVerticalStack<Tabs> {
         return this;
     }
 }
-

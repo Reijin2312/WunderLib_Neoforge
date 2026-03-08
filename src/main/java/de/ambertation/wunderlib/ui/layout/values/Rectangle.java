@@ -87,4 +87,3 @@ public class Rectangle {
                 " [size: " + width + "x" + height + "]}";
     }
 }
-

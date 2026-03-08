@@ -83,4 +83,3 @@ public abstract class SDFOperation extends SDF implements Transformable, Rotatab
         transform = transform.rotateBy(Quaternion.ofAxisAngle(Float3.Y_AXIS, angle));
     }
 }
-

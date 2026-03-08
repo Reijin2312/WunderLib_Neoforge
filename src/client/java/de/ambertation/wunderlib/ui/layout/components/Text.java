@@ -99,4 +99,3 @@ public class Text extends LayoutComponent<Text.TextRenderer, Text> {
         return false;
     }
 }
-

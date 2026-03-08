@@ -12,13 +12,10 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@OnlyIn(Dist.CLIENT)
 public abstract class LayoutScreen extends Screen {
     protected static final Runnable EMPTY_SCREEN = () -> {
         Minecraft.getInstance().setScreen(null);
@@ -146,7 +143,7 @@ public abstract class LayoutScreen extends Screen {
     }
 
     public void renderBackgroundLayer(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-       
+
     }
 
 
@@ -240,4 +237,3 @@ public abstract class LayoutScreen extends Screen {
         }
     }
 }
-

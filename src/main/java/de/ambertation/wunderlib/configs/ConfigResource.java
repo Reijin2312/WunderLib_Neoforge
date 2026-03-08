@@ -161,4 +161,3 @@ public class ConfigResource extends AbstractConfig<ConfigResource> {
         return sb.toString();
     }
 }
-

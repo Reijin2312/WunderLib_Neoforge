@@ -4,8 +4,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -61,7 +59,6 @@ public class ServerBoundPacketHandler<T extends ServerBoundNetworkPayload<T>> ex
         return packetHandler;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public static <T extends ServerBoundNetworkPayload<T>> void sendToServer(T payload) {
         payload.prepareOnClient();
         if (sendToServerAdapter != null) {
@@ -98,4 +95,3 @@ public class ServerBoundPacketHandler<T extends ServerBoundNetworkPayload<T>> ex
         }
     }
 }
-

@@ -84,4 +84,3 @@ public abstract class BaseShape extends SDF implements MaterialProvider, Transfo
         return false;
     }
 }
-

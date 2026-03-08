@@ -7,8 +7,6 @@ import de.ambertation.wunderlib.utils.Version;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import com.google.gson.*;
 
@@ -175,7 +173,6 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
      *
      * @return all stored values
      */
-    @OnlyIn(Dist.CLIENT)
     public List<C.Value<?, ?>> getAllValues() {
         return knownValues;
     }
@@ -185,7 +182,6 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
      *
      * @return All visible Values
      */
-    @OnlyIn(Dist.CLIENT)
     public List<AbstractConfig<?>.Value<?, ?>> getAllVisibleValues() {
         List<AbstractConfig<?>.Value<?, ?>> values = new ArrayList<>();
         for (AbstractConfig<?>.Value<?, ?> v : knownValues) {
@@ -202,7 +198,6 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
      * @param group The group to filter for
      * @return All visible Values in the given group
      */
-    @OnlyIn(Dist.CLIENT)
     public List<AbstractConfig<?>.Value<?, ?>> getAllVisibleValues(Group group) {
         List<AbstractConfig<?>.Value<?, ?>> values = new ArrayList<>();
         for (AbstractConfig<?>.Value<?, ?> v : knownValues) {
@@ -221,7 +216,6 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
      * @param configFiles an array of config files
      * @return All visible Values in the given group
      */
-    @OnlyIn(Dist.CLIENT)
     public static List<AbstractConfig<?>.Value<?, ?>> getAllVisibleValues(
             Group group,
             List<AbstractConfig<?>> configFiles
@@ -244,7 +238,6 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
      *
      * @return All stored groups
      */
-    @OnlyIn(Dist.CLIENT)
     public List<Group> getAllGroups() {
         List<Group> groups = new ArrayList<>();
         for (AbstractConfig<?>.Value<?, ?> v : knownValues) {
@@ -262,7 +255,6 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
      * @param configFiles an array of config files
      * @return All stored groups
      */
-    @OnlyIn(Dist.CLIENT)
     public static List<Group> getAllGroups(List<AbstractConfig<?>> configFiles) {
         List<Group> groups = new ArrayList<>();
         for (AbstractConfig<?> c : configFiles) {
@@ -276,7 +268,6 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
         return groups;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public static String getAllCategories(List<AbstractConfig<?>> configFiles) {
         StringBuilder sb = new StringBuilder();
         for (AbstractConfig<?> c : configFiles) {
@@ -801,4 +792,3 @@ public abstract class AbstractConfig<C extends AbstractConfig<C>> {
         }
     }
 }
-

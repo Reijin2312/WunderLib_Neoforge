@@ -29,7 +29,7 @@ public class Version {
          * @return The version object
          */
         Version getModVersion();
-        
+
         /**
          * Gets the ID of the mod.
          * @return The mod ID string
@@ -43,7 +43,7 @@ public class Version {
         default String getNamespace() {
             return getModID();
         }
-        
+
         /**
          * Creates a Identifier with the mod's namespace and the given path.
          * @param key The path part of the Identifier
@@ -60,7 +60,7 @@ public class Version {
     /**
      * Creates a new Version from a string.
      * If the input is "${version}" (a placeholder), it will default to "0.0.0".
-     * 
+     *
      * @param version The version string in "major.minor.patch" format
      */
     public Version(String version) {
@@ -70,7 +70,7 @@ public class Version {
 
     /**
      * Creates a new Version from major, minor, and patch components.
-     * 
+     *
      * @param major The major version number
      * @param minor The minor version number
      * @param patch The patch version number
@@ -82,7 +82,7 @@ public class Version {
     /**
      * Converts a version string to an integer representation.
      * The version components are encoded into the RGB channels of a 32-bit integer.
-     * 
+     *
      * @param version The version string to convert
      * @return An integer representation of the version
      */
@@ -114,7 +114,7 @@ public class Version {
 
     /**
      * Extracts the major version component from an integer representation.
-     * 
+     *
      * @param version The integer representation of the version
      * @return The major version number
      */
@@ -124,7 +124,7 @@ public class Version {
 
     /**
      * Extracts the minor version component from an integer representation.
-     * 
+     *
      * @param version The integer representation of the version
      * @return The minor version number
      */
@@ -134,7 +134,7 @@ public class Version {
 
     /**
      * Extracts the patch version component from an integer representation.
-     * 
+     *
      * @param version The integer representation of the version
      * @return The patch version number
      */
@@ -144,7 +144,7 @@ public class Version {
 
     /**
      * Creates a Version object from an integer representation.
-     * 
+     *
      * @param version The integer representation of the version
      * @return A Version object
      */
@@ -154,7 +154,7 @@ public class Version {
 
     /**
      * Converts this Version object to an integer representation.
-     * 
+     *
      * @return An integer representation of this version
      */
     public int toInt() {
@@ -163,7 +163,7 @@ public class Version {
 
     /**
      * Checks if this version is larger than the given version.
-     * 
+     *
      * @param v2 The version to compare against
      * @return True if this version is larger, false otherwise
      */
@@ -173,7 +173,7 @@ public class Version {
 
     /**
      * Checks if this version is larger than or equal to the given version.
-     * 
+     *
      * @param v2 The version to compare against
      * @return True if this version is larger or equal, false otherwise
      */
@@ -183,7 +183,7 @@ public class Version {
 
     /**
      * Checks if this version is larger than the given version string.
-     * 
+     *
      * @param v2 The version string to compare against
      * @return True if this version is larger, false otherwise
      */
@@ -193,7 +193,7 @@ public class Version {
 
     /**
      * Checks if this version is larger than or equal to the given version string.
-     * 
+     *
      * @param v2 The version string to compare against
      * @return True if this version is larger or equal, false otherwise
      */
@@ -203,7 +203,7 @@ public class Version {
 
     /**
      * Checks if this version is less than the given version.
-     * 
+     *
      * @param v2 The version to compare against
      * @return True if this version is less, false otherwise
      */
@@ -213,7 +213,7 @@ public class Version {
 
     /**
      * Checks if this version is less than or equal to the given version.
-     * 
+     *
      * @param v2 The version to compare against
      * @return True if this version is less or equal, false otherwise
      */
@@ -223,7 +223,7 @@ public class Version {
 
     /**
      * Checks if this version is less than the given version string.
-     * 
+     *
      * @param v2 The version string to compare against
      * @return True if this version is less, false otherwise
      */
@@ -233,7 +233,7 @@ public class Version {
 
     /**
      * Checks if this version is less than or equal to the given version string.
-     * 
+     *
      * @param v2 The version string to compare against
      * @return True if this version is less or equal, false otherwise
      */
@@ -245,7 +245,7 @@ public class Version {
      * Checks if this version is equal to another object.
      * If the object is a string, it compares the trimmed version string.
      * If the object is a Version, it compares the version strings.
-     * 
+     *
      * @param o The object to compare against
      * @return True if the versions are equal, false otherwise
      */
@@ -259,7 +259,7 @@ public class Version {
 
     /**
      * Computes the hash code for this version.
-     * 
+     *
      * @return The hash code of the version string
      */
     @Override
@@ -269,7 +269,7 @@ public class Version {
 
     /**
      * Returns the string representation of this version.
-     * 
+     *
      * @return The version string
      */
     @Override
@@ -277,4 +277,3 @@ public class Version {
         return version;
     }
 }
-

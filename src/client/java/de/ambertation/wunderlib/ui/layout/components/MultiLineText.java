@@ -181,4 +181,3 @@ public class MultiLineText extends LayoutComponent<MultiLineText.MultiLineTextRe
         return false;
     }
 }
-

@@ -1,9 +1,6 @@
 package de.ambertation.wunderlib.ui.layout.values;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class Value {
     private SizeType sizeType;
     private int calculatedSize;
@@ -108,4 +105,3 @@ public class Value {
                 '}';
     }
 }
-

@@ -523,4 +523,3 @@ public class Float4 {
     public Float4 wwww() { return new Float4(w, w, w, w); }
     //-------------------------------------------- SWIVELS  (@formatter:on) --------------------------------------------
 }
-

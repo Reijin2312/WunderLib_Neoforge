@@ -12,13 +12,10 @@ import net.minecraft.client.gui.components.events.ContainerEventHandler;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.input.MouseButtonEvent;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-@OnlyIn(Dist.CLIENT)
 public class VerticalScroll<RS extends ScrollerRenderer> extends LayoutComponent<NullRenderer, VerticalScroll<RS>> implements ContainerEventHandler {
     protected LayoutComponent<?, ?> child;
     protected final RS scrollerRenderer;
@@ -159,13 +156,14 @@ public class VerticalScroll<RS extends ScrollerRenderer> extends LayoutComponent
                 //guiGraphics.pose().pushMatrix();
                 guiGraphics.pose().translate(0, scrollerOffset());
 
-                setClippingRect(guiGraphics, clipRect);
+                Rectangle clipSpaceBounds = renderBounds.movedBy(0, scrollerOffset());
+                setClippingRect(guiGraphics, clipSpaceBounds, clipRect);
                 child.render(
                         guiGraphics, mouseX, mouseY - scrollerOffset(), deltaTicks,
-                        renderBounds.movedBy(0, scrollerOffset(), scrollerWidth(), 0),
+                        clipSpaceBounds.movedBy(0, 0, scrollerWidth(), 0),
                         clipRect
                 );
-                setClippingRect(guiGraphics, null);
+                setClippingRect(guiGraphics, clipSpaceBounds, null);
 
                 guiGraphics.pose().translate(0, -scrollerOffset());
                 //guiGraphics.pose().popMatrix();

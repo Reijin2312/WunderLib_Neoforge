@@ -21,4 +21,3 @@ public abstract class SDFBinaryOperation extends SDFOperation {
         setSlot(1, b);
     }
 }
-

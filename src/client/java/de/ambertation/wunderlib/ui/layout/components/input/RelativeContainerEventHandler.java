@@ -6,12 +6,9 @@ import net.minecraft.client.gui.components.events.ContainerEventHandler;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.input.MouseButtonEvent;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.Optional;
 
-@OnlyIn(Dist.CLIENT)
 public interface RelativeContainerEventHandler extends ContainerEventHandler {
     Rectangle getInputBounds();
 
@@ -57,5 +54,3 @@ public interface RelativeContainerEventHandler extends ContainerEventHandler {
         return res || r.contains(x, y);
     }
 }
-
-

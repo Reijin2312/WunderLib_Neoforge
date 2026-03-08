@@ -160,4 +160,3 @@ public abstract class AbstractVanillaComponent<C extends AbstractWidget, V exten
     }
 
 }
-

@@ -59,4 +59,3 @@ public class SDFUnion extends SDFBinaryOperation {
 
 
 }
-

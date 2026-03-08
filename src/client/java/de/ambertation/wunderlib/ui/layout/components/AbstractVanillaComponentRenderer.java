@@ -7,10 +7,7 @@ import de.ambertation.wunderlib.ui.layout.values.Rectangle;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class AbstractVanillaComponentRenderer<C extends AbstractWidget, V extends AbstractVanillaComponent<C, V>> implements ComponentRenderer, TextProvider {
     V linkedComponent;
 
@@ -41,4 +38,3 @@ public class AbstractVanillaComponentRenderer<C extends AbstractWidget, V extend
         }
     }
 }
-

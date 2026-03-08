@@ -49,4 +49,3 @@ public class Empty extends SDF {
         return Transform.IDENTITY;
     }
 }
-

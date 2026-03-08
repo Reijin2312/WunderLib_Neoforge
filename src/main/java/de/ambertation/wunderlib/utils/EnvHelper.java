@@ -10,11 +10,10 @@ import net.neoforged.fml.loading.FMLEnvironment;
 public class EnvHelper {
     /**
      * Checks if the current environment is a client environment.
-     * 
+     *
      * @return true if the current environment is a client, false if it's a server
      */
     public static boolean isClient() {
         return FMLEnvironment.getDist() == Dist.CLIENT;
     }
 }
-

@@ -11,14 +11,11 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.input.MouseButtonEvent;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.LinkedList;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-@OnlyIn(Dist.CLIENT)
 public class Container extends LayoutComponent<Container.ContainerRenderer, Container> implements RelativeContainerEventHandler {
     public static class ContainerRenderer implements ComponentRenderer {
         Container linkedContainer;
@@ -197,14 +194,14 @@ public class Container extends LayoutComponent<Container.ContainerRenderer, Cont
         if (visible) {
             super.renderInBounds(guiGraphics, mouseX, mouseY, deltaTicks, renderBounds, clipRect);
 
-            setClippingRect(guiGraphics, clipRect);
+            setClippingRect(guiGraphics, renderBounds, clipRect);
             for (var child : children) {
                 child.component.render(
                         guiGraphics, mouseX, mouseY, deltaTicks,
                         renderBounds, clipRect
                 );
             }
-            setClippingRect(guiGraphics, null);
+            setClippingRect(guiGraphics, renderBounds, null);
         }
     }
 

@@ -8,11 +8,8 @@ import de.ambertation.wunderlib.ui.layout.values.Value;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 
-@OnlyIn(Dist.CLIENT)
 public abstract class LayoutComponent<R extends ComponentRenderer, L extends LayoutComponent<R, L>> implements ComponentWithBounds, GuiEventListener {
     protected final R renderer;
     protected final Value width;
@@ -86,7 +83,7 @@ public abstract class LayoutComponent<R extends ComponentRenderer, L extends Lay
     /**
      * Set clipping rectangle using the new GuiGraphics scissor system
      */
-    protected final void setClippingRect(GuiGraphics guiGraphics, Rectangle clippingRect) {
+    protected final void setClippingRect(GuiGraphics guiGraphics, Rectangle renderBounds, Rectangle clippingRect) {
 
         if (clippingRect == null) {
             guiGraphics.disableScissor();
@@ -101,11 +98,14 @@ public abstract class LayoutComponent<R extends ComponentRenderer, L extends Lay
 //                0xFF00FF00
 //        );
 
+        // GuiGraphics#enableScissor transforms coordinates by the current pose.
+        // Convert absolute clip bounds into local coordinates first to avoid double-translation.
+        Rectangle localClip = clippingRect.movedBy(-renderBounds.left, -renderBounds.top);
         guiGraphics.enableScissor(
-                clippingRect.left,
-                clippingRect.top,
-                clippingRect.right(),
-                clippingRect.bottom()
+                localClip.left,
+                localClip.top,
+                localClip.right(),
+                localClip.bottom()
         );
     }
 
@@ -143,9 +143,9 @@ public abstract class LayoutComponent<R extends ComponentRenderer, L extends Lay
             Rectangle clipRect
     ) {
         if (renderer != null) {
-            setClippingRect(guiGraphics, clipRect);
+            setClippingRect(guiGraphics, renderBounds, clipRect);
             renderer.renderInBounds(guiGraphics, mouseX, mouseY, deltaTicks, renderBounds, clipRect);
-            setClippingRect(guiGraphics, null);
+            setClippingRect(guiGraphics, renderBounds, null);
         }
     }
 

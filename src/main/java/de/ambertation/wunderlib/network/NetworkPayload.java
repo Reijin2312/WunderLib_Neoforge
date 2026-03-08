@@ -27,4 +27,3 @@ public abstract class NetworkPayload<T extends NetworkPayload<T>> implements Cus
         return false;
     }
 }
-

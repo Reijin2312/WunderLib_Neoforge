@@ -57,4 +57,3 @@ public class SDFDifference extends SDFBinaryOperation {
         return "(" + getFirst() + " - " + getSecond() + ")" + " [" + graphIndex + "]";
     }
 }
-

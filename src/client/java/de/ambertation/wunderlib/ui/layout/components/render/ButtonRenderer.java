@@ -7,10 +7,7 @@ import de.ambertation.wunderlib.ui.layout.values.Rectangle;
 
 import net.minecraft.client.gui.GuiGraphics;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class ButtonRenderer extends AbstractVanillaComponentRenderer<net.minecraft.client.gui.components.Button, Button> {
     double deltaSum = 0;
     double deltaSum2 = .34;
@@ -93,4 +90,3 @@ public class ButtonRenderer extends AbstractVanillaComponentRenderer<net.minecra
         guiGraphics.fill(x, y, x + 1, y + 1, ColorHelper.WHITE);
     }
 }
-

@@ -2,13 +2,10 @@ package de.ambertation.wunderlib.ui.layout.components;
 
 import net.minecraft.network.chat.Component;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import de.ambertation.wunderlib.ui.ColorHelper;
 import de.ambertation.wunderlib.ui.layout.values.Value;
 
-@OnlyIn(Dist.CLIENT)
 public class ColorPicker extends AbstractHorizontalStack<ColorPicker> {
     ColorSwatch swatch;
     Input input;
@@ -34,4 +31,3 @@ public class ColorPicker extends AbstractHorizontalStack<ColorPicker> {
         }
     }
 }
-

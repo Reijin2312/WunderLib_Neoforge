@@ -9,10 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class VerticalStack extends AbstractVerticalStack<VerticalStack> {
     public VerticalStack(Value width, Value height) {
         super(width, height);
@@ -230,4 +227,3 @@ public class VerticalStack extends AbstractVerticalStack<VerticalStack> {
         return super.addItem(stack);
     }
 }
-

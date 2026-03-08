@@ -1,9 +1,6 @@
 package de.ambertation.wunderlib.ui.layout.values;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public interface SizeType {
     FitContent FIT_CONTENT = new FitContent();
     FitContentOrFill FIT_CONTENT_OR_FILL = new FitContentOrFill();
@@ -72,4 +69,3 @@ public interface SizeType {
         }
     }
 }
-

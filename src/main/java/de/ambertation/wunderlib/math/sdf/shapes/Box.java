@@ -55,4 +55,3 @@ public class Box extends BaseShape implements Rotatable {
         return DEFAULT_TRANSFORM;
     }
 }
-
